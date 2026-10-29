@@ -1,0 +1,276 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikhila's Study Planner 🌸</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff5f8;
+  color: #353354;
+}
+header {
+  padding: 24px;
+  background: #ffe1ed;
+}
+header h1 { margin: 0 0 8px; color: #bb5483; }
+.layout {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  min-height: 100vh;
+}
+aside {
+  padding: 24px 16px;
+  background: #fff;
+  border-right: 1px solid #f1dce7;
+}
+aside h2 { font-size: 20px; }
+aside p { padding: 10px; border-radius: 10px; }
+main { padding: 24px; min-width: 0; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: white;
+  border: 1px solid #f1dfeb;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 5px 18px #ead9e333;
+}
+.card h2 { margin-top: 0; font-size: 19px; }
+.task { display: block; margin: 15px 0; }
+input[type="checkbox"] { accent-color: #d96b9d; }
+.progress {
+  height: 10px;
+  background: #f2e8f3;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.bar {
+  height: 100%;
+  width: 0%;
+  background: #d77fac;
+  transition: width .3s;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  background: white;
+  border-radius: 12px;
+}
+th, td {
+  padding: 12px 8px;
+  border: 1px solid #f2e4ed;
+  text-align: center;
+}
+th { background: #ffe2ef; }
+td { font-size: 13px; }
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: #e9dfff;
+  color: #393256;
+  cursor: pointer;
+}
+.quote { color: #b45d8a; font-style: italic; }
+@media (max-width: 650px) {
+  .layout { grid-template-columns: 1fr; }
+  aside { display: none; }
+  main { padding: 12px; }
+  .table-wrap { overflow-x: auto; }
+  table { min-width: 620px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <h2>🌸 Study Planner</h2>
+  <p>🏠 Home</p>
+  <p>📅 My Schedule</p>
+  <p>📚 Subjects</p>
+  <p>
+  <a href="#task-manager"
+     style="text-decoration:none; color:inherit;">
+    ✅ My Tasks
+  </a>
+</p>
+  <p>📝 My Notes</p>
+  <p class="quote">Small steps.<br>Big dreams 💗</p>
+</aside>
+
+<div>
+<header>
+  <h1>🌷 Hello Nikhila!</h1>
+  <p>BTech (CS/IT) | Your little steps matter 💗</p>
+</header>
+
+<main>
+<div class="cards">
+  <section class="card">
+    <h2>📚 Today's Plan</h2>
+    <label class="task"><input type="checkbox" class="task-check"> M2 — 1 hour</label>
+    <label class="task"><input type="checkbox" class="task-check"> Java — 45 minutes</label>
+    <label class="task"><input type="checkbox" class="task-check"> Fitness — 30 minutes</label>
+    <label class="task"><input type="checkbox" class="task-check"> Skincare + Hair care</label>
+    <label class="task"><input type="checkbox" class="task-check"> Plan tomorrow</label>
+  </section>
+
+  <section class="card">
+    <h2>🎯 Today's Goals</h2>
+    <p>One subject at a time.</p>
+    <p>Practice, don't just read.</p>
+    <p>Be proud of yourself 💗</p>
+    <button onclick="alert('You can do this, Nikhila! 🌸')">
+      My Motivation
+    </button>
+  </section>
+
+  <section class="card">
+    <h2>📊 Today's Progress</h2>
+    <p id="progress-text">0 of 5 tasks complete</p>
+    <div class="progress"><div class="bar" id="progress-bar"></div></div>
+  </section>
+
+  <section class="card">
+    <h2>📖 My Semester 3 Subjects</h2>
+    <p>🌐 IoT</p>
+    <p>💻 OS</p>
+    <p>☕ Java</p>
+    <p>🖥️ Comp</p>
+    <p>📘 M3</p>
+    <p class="quote">Progress is progress, no matter how small.</p>
+  </section>
+</div>
+
+<section class="card" style="margin-top:20px">
+  <h2>📅 Weekly Timetable</h2>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Time</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr><th>8–9 AM</th><td>Wake up</td><td>Wake up</td><td>Wake up</td><td>Wake up</td><td>Wake up</td><td>Wake up</td><td>Wake up</td></tr>
+    <tr><th>9–10 AM</th><td>M2</td><td>Java</td><td>M2</td><td>Java</td><td>M2</td><td>Java</td><td>Revision</td></tr>
+    <tr><th>10–11 AM</th><td>Practice</td><td>Practice</td><td>Practice</td><td>Practice</td><td>Practice</td><td>Practice</td><td>Revision</td></tr>
+    <tr><th>11–12 PM</th><td>OS</td><td>IoT</td><td>OS</td><td>IoT</td><td>OS</td><td>IoT</td><td>Notes</td></tr>
+    <tr><th>12–1 PM</th><td colspan="7">Lunch + Rest 🍱</td></tr>
+    <tr><th>1–3 PM</th><td>Comp</td><td>M3</td><td>Comp</td><td>M3</td><td>Comp</td><td>M3</td><td>Weekly Review</td></tr>
+    <tr><th>3–4 PM</th><td colspan="7">Break + Healthy Snack 🍎</td></tr>
+    <tr><th>4–5 PM</th><td>Java</td><td>OS</td><td>Java</td><td>OS</td><td>Java</td><td>OS</td><td>Doubt Solving</td></tr>
+    <tr><th>5–6 PM</th><td colspan="7">Fitness + Walk 🌷</td></tr>
+    <tr><th>6–7 PM</th><td colspan="7">Skincare + Hair care ✨</td></tr>
+    <tr><th>7–8 PM</th><td>M2 Practice</td><td>Java Project</td><td>M2 Practice</td><td>Java Project</td><td>M2 Practice</td><td>Java Project</td><td>Free Time</td></tr>
+    <tr><th>8–9 PM</th><td colspan="7">Dinner + Family</td></tr>
+    <tr><th>9–9:30 PM</th><td colspan="7">Plan tomorrow + Journal 📝</td></tr>
+  </table>
+  </div>
+</section>
+<p class="quote">🌸 A little progress each day adds up to big results.</p>
+</main>
+</div>
+</div>
+<script>
+const tasks = document.querySelectorAll('.task-check');
+function updateProgress() {
+  const done = [...tasks].filter(task => task.checked).length;
+  document.getElementById('progress-text').textContent =
+    `${done} of ${tasks.length} tasks complete`;
+  document.getElementById('progress-bar').style.width =
+    `${done / tasks.length * 100}%`;
+}
+tasks.forEach(task => task.addEventListener('change', updateProgress));
+</script>
+</body>
+<div class="card" id="task-manager">
+    <h2>📝 My Daily Tasks</h2>
+    <!-- Existing task input and buttons ikkade undali -->
+</div>
+    <h2>📝 My Daily Tasks</h2>
+
+    <input
+        type="text"
+        id="taskInput"
+        placeholder="Enter a new task..."
+    >
+
+    <button onclick="addTask()">Add Task +</button>
+
+    <p id="taskMessage"></p>
+    <ul id="taskList"></ul>
+</div>#task-manager input[type="text"] {
+    padding: 10px;
+    border: 1px solid #e5b8d0;
+    border-radius: 8px;
+    width: 65%;
+    max-width: 100%;
+}
+
+#task-manager button {
+    margin: 5px;
+    background: #f5c6dc;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#taskList {
+    padding-left: 20px;
+}
+
+#taskList li {
+    margin: 12px 0;
+    overflow-wrap: anywhere;
+}
+
+#taskList li button {
+    padding: 6px 10px;
+}
+
+.task-done {
+    text-decoration: line-through;
+    color: #999;
+}function addTask() {
+    const input = document.getElementById("taskInput");
+    const taskName = input.value.trim();
+    const message = document.getElementById("taskMessage");
+
+    if (taskName === "") {
+        message.textContent = "Please enter a task! 🌸";
+        return;
+    }
+
+    const li = document.createElement("li");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+
+    const span = document.createElement("span");
+    span.textContent = " " + taskName;
+
+    checkbox.addEventListener("change", function () {
+        span.classList.toggle("task-done", checkbox.checked);
+    });
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+
+    deleteButton.addEventListener("click", function () {
+        li.remove();
+    });
+
+    li.appendChild(checkbox);
+    li.appendChild(span);
+    li.appendChild(deleteButton);
+
+    document.getElementById("taskList").appendChild(li);
+
+    input.value = "";
+    message.textContent = "Task added successfully! 💗";
+    input.focus();
+}
