@@ -228,7 +228,7 @@ td { font-size: 13px; }
 const SUPABASE_URL = "https://pgafbwxmbtgfnopcgvkx.supabase.co";
 const SUPABASE_KEY = "sb_publishable_IGB3fxpcC3JW7oMxo9-4gA_uTvwHrDg";
 
-const client = window.supabase.createClient(SUPARBASE_URL,SUPABASE_KEY);
+const client = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
 const authForm = document.getElementById("auth-form");
 const authMessage = document.getElementById("auth-message");
@@ -236,7 +236,8 @@ const userStatus = document.getElementById("user-status");
 const logoutButton = document.getElementById("logout-button");
 const taskForm = document.getElementById("task-form");
 const taskInput = document.getElementById("taskInput");
-const taskList = document.getElementById("taskList");
+
+  const taskList = document.getElementById("taskList");
 const taskMessage = document.getElementById("taskMessage");
 
 let currentUser = null;
