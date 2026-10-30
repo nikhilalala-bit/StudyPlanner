@@ -1,76 +1,65 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nikhila's Study Planner 🌸</title>
+
 <style>
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #fff5f8;
   color: #353354;
 }
-header {
-  padding: 24px;
-  background: #ffe1ed;
-}
+
+header { padding: 24px; background: #ffe1ed; }
 header h1 { margin: 0 0 8px; color: #bb5483; }
+
 .layout {
   display: grid;
   grid-template-columns: 190px 1fr;
   min-height: 100vh;
 }
+
 aside {
   padding: 24px 16px;
-  background: #fff;
+  background: white;
   border-right: 1px solid #f1dce7;
 }
-aside h2 { font-size: 20px; }
+
 aside p { padding: 10px; border-radius: 10px; }
 main { padding: 24px; min-width: 0; }
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
 }
+
 .card {
   background: white;
   border: 1px solid #f1dfeb;
   border-radius: 18px;
   padding: 20px;
   box-shadow: 0 5px 18px #ead9e333;
+  margin-bottom: 16px;
 }
+
 .card h2 { margin-top: 0; font-size: 19px; }
 .task { display: block; margin: 15px 0; }
 input[type="checkbox"] { accent-color: #d96b9d; }
-.progress {
-  height: 10px;
-  background: #f2e8f3;
-  border-radius: 20px;
-  overflow: hidden;
-}
-.bar {
-  height: 100%;
-  width: 0%;
-  background: #d77fac;
-  transition: width .3s;
-}
-table {
+
+input[type="text"], input[type="email"], input[type="password"] {
+  padding: 10px;
+  border: 1px solid #e5b8d0;
+  border-radius: 8px;
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 12px;
-  background: white;
-  border-radius: 12px;
+  margin: 7px 0;
 }
-th, td {
-  padding: 12px 8px;
-  border: 1px solid #f2e4ed;
-  text-align: center;
-}
-th { background: #ffe2ef; }
-td { font-size: 13px; }
+
 button {
   border: 0;
   border-radius: 10px;
@@ -78,8 +67,46 @@ button {
   background: #e9dfff;
   color: #393256;
   cursor: pointer;
+  margin: 5px 3px;
 }
+
+#task-manager button { background: #f5c6dc; }
+#taskList { padding-left: 20px; }
+#taskList li { margin: 12px 0; overflow-wrap: anywhere; }
+.task-done { text-decoration: line-through; color: #999; }
 .quote { color: #b45d8a; font-style: italic; }
+
+.progress {
+  height: 10px;
+  background: #f2e8f3;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  background: #d77fac;
+  transition: width .3s;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  background: white;
+}
+
+th, td {
+  padding: 12px 8px;
+  border: 1px solid #f2e4ed;
+  text-align: center;
+}
+
+th { background: #ffe2ef; }
+td { font-size: 13px; }
+#auth-message, #taskMessage { overflow-wrap: anywhere; }
+
 @media (max-width: 650px) {
   .layout { grid-template-columns: 1fr; }
   aside { display: none; }
@@ -89,6 +116,7 @@ button {
 }
 </style>
 </head>
+
 <body>
 <div class="layout">
 <aside>
@@ -96,13 +124,7 @@ button {
   <p>🏠 Home</p>
   <p>📅 My Schedule</p>
   <p>📚 Subjects</p>
-  <p>
-  <a href="#task-manager"
-     style="text-decoration:none; color:inherit;">
-    ✅ My Tasks
-  </a>
-</p>
-  <p>📝 My Notes</p>
+  <p><a href="#task-manager" style="text-decoration:none;color:inherit">✅ My Tasks</a></p>
   <p class="quote">Small steps.<br>Big dreams 💗</p>
 </aside>
 
@@ -113,6 +135,24 @@ button {
 </header>
 
 <main>
+<section class="card">
+  <h2>🔐 Your Account</h2>
+  <p>Create an account or log in to access your personal tasks.</p>
+
+  <form id="auth-form">
+    <input id="email" type="email" placeholder="Your email" required>
+    <input id="password" type="password"
+           placeholder="Password (at least 6 characters)"
+           minlength="6" required>
+    <button type="submit" id="login-button">Login</button>
+    <button type="button" id="signup-button">Create Account</button>
+  </form>
+
+  <p id="auth-message" aria-live="polite"></p>
+  <p id="user-status"></p>
+  <button id="logout-button" hidden>Logout</button>
+</section>
+
 <div class="cards">
   <section class="card">
     <h2>📚 Today's Plan</h2>
@@ -128,9 +168,7 @@ button {
     <p>One subject at a time.</p>
     <p>Practice, don't just read.</p>
     <p>Be proud of yourself 💗</p>
-    <button onclick="alert('You can do this, Nikhila! 🌸')">
-      My Motivation
-    </button>
+    <button onclick="alert('You can do this, Nikhila! 🌸')">My Motivation</button>
   </section>
 
   <section class="card">
@@ -141,16 +179,13 @@ button {
 
   <section class="card">
     <h2>📖 My Semester 3 Subjects</h2>
-    <p>🌐 IoT</p>
-    <p>💻 OS</p>
-    <p>☕ Java</p>
-    <p>🖥️ Comp</p>
-    <p>📘 M3</p>
+    <p>🌐 IoT</p><p>💻 OS</p><p>☕ Java</p>
+    <p>🖥️ Comp</p><p>📘 M3</p>
     <p class="quote">Progress is progress, no matter how small.</p>
   </section>
 </div>
 
-<section class="card" style="margin-top:20px">
+<section class="card">
   <h2>📅 Weekly Timetable</h2>
   <div class="table-wrap">
   <table>
@@ -171,106 +206,210 @@ button {
   </table>
   </div>
 </section>
+
+<section class="card" id="task-manager">
+  <h2>📝 My Daily Tasks</h2>
+  <p>Login first to save and view your own tasks.</p>
+  <form id="task-form">
+    <input id="taskInput" type="text" placeholder="Enter a new task..." required>
+    <button type="submit">Add Task +</button>
+  </form>
+  <p id="taskMessage" aria-live="polite"></p>
+  <ul id="taskList"></ul>
+</section>
+
 <p class="quote">🌸 A little progress each day adds up to big results.</p>
 </main>
 </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const tasks = document.querySelectorAll('.task-check');
-function updateProgress() {
-  const done = [...tasks].filter(task => task.checked).length;
-  document.getElementById('progress-text').textContent =
-    `${done} of ${tasks.length} tasks complete`;
-  document.getElementById('progress-bar').style.width =
-    `${done / tasks.length * 100}%`;
-}
-tasks.forEach(task => task.addEventListener('change', updateProgress));
-</script>
-</body>
-<div class="card" id="task-manager">
-    <h2>📝 My Daily Tasks</h2>
-    <!-- Existing task input and buttons ikkade undali -->
-</div>
-    <h2>📝 My Daily Tasks</h2>
+const SUPABASE_URL = "https://pgafbwxmbtgfnopcgvkx.supabase.co/rest/v1/";
+const SUPABASE_KEY = "sb_publishable_IGB3fxpcC3JW7oMxo9-4gA_uTvwHrDg";
 
-    <input
-        type="text"
-        id="taskInput"
-        placeholder="Enter a new task..."
-    >
+const client = window.supabase.createClient(SUPARBASE_URL, SUPABASE_KEY);
 
-    <button onclick="addTask()">Add Task +</button>
+const authForm = document.getElementById("auth-form");
+const authMessage = document.getElementById("auth-message");
+const userStatus = document.getElementById("user-status");
+const logoutButton = document.getElementById("logout-button");
+const taskForm = document.getElementById("task-form");
+const taskInput = document.getElementById("taskInput");
+const taskList = document.getElementById("taskList");
+const taskMessage = document.getElementById("taskMessage");
 
-    <p id="taskMessage"></p>
-    <ul id="taskList"></ul>
-</div>#task-manager input[type="text"] {
-    padding: 10px;
-    border: 1px solid #e5b8d0;
-    border-radius: 8px;
-    width: 65%;
-    max-width: 100%;
-}
+let currentUser = null;
 
-#task-manager button {
-    margin: 5px;
-    background: #f5c6dc;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-}
+document.getElementById("signup-button").addEventListener("click", async () => {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
 
-#taskList {
-    padding-left: 20px;
-}
+  if (!email || password.length < 6) {
+    authMessage.textContent = "Enter your email and a password with at least 6 characters.";
+    return;
+  }
 
-#taskList li {
-    margin: 12px 0;
-    overflow-wrap: anywhere;
-}
+  authMessage.textContent = "Creating your account...";
 
-#taskList li button {
-    padding: 6px 10px;
-}
+  const { error } = await client.auth.signUp({ email, password });
 
-.task-done {
-    text-decoration: line-through;
-    color: #999;
-}function addTask() {
-    const input = document.getElementById("taskInput");
-    const taskName = input.value.trim();
-    const message = document.getElementById("taskMessage");
+  if (error) {
+    authMessage.textContent = error.message;
+  } else {
+    authMessage.textContent =
+      "Account request sent! If email confirmation is enabled, check your inbox and confirm your email before logging in.";
+  }
+});
 
-    if (taskName === "") {
-        message.textContent = "Please enter a task! 🌸";
-        return;
-    }
+authForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  authMessage.textContent = "Logging in...";
+
+  const { error } = await client.auth.signInWithPassword({ email, password });
+
+  if (error) {
+    authMessage.textContent = error.message;
+  } else {
+    authMessage.textContent = "Login successful! 💗";
+  }
+});
+
+logoutButton.addEventListener("click", async () => {
+  const { error } = await client.auth.signOut();
+  if (error) authMessage.textContent = error.message;
+});
+
+async function loadTasks() {
+  taskList.replaceChildren();
+
+  if (!currentUser) {
+    taskMessage.textContent = "Login to manage your personal tasks 🌸";
+    return;
+  }
+
+  taskMessage.textContent = "Loading tasks...";
+
+  const { data, error } = await client
+    .from("tasks")
+    .select("id, title, is_completed, created_at")
+    .eq("user_id", currentUser.id)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    taskMessage.textContent = "Could not load tasks: " + error.message;
+    return;
+  }
+
+  taskMessage.textContent = data.length ? "" : "No tasks yet. Add your first task! 💗";
+
+  data.forEach((task) => {
     const li = document.createElement("li");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.checked = task.is_completed;
 
     const span = document.createElement("span");
-    span.textContent = " " + taskName;
+    span.textContent = " " + task.title;
+    span.classList.toggle("task-done", task.is_completed);
 
-    checkbox.addEventListener("change", function () {
+    checkbox.addEventListener("change", async () => {
+      const { error } = await client
+        .from("tasks")
+        .update({ is_completed: checkbox.checked })
+        .eq("id", task.id)
+        .eq("user_id", currentUser.id);
+
+      if (error) {
+        taskMessage.textContent = "Could not update task: " + error.message;
+        checkbox.checked = !checkbox.checked;
+      } else {
         span.classList.toggle("task-done", checkbox.checked);
+      }
     });
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
 
-    deleteButton.addEventListener("click", function () {
-        li.remove();
+    deleteButton.addEventListener("click", async () => {
+      const { error } = await client
+        .from("tasks")
+        .delete()
+        .eq("id", task.id)
+        .eq("user_id", currentUser.id);
+
+      if (error) {
+        taskMessage.textContent = "Could not delete task: " + error.message;
+      } else {
+        await loadTasks();
+      }
     });
 
-    li.appendChild(checkbox);
-    li.appendChild(span);
-    li.appendChild(deleteButton);
-
-    document.getElementById("taskList").appendChild(li);
-
-    input.value = "";
-    message.textContent = "Task added successfully! 💗";
-    input.focus();
+    li.append(checkbox, span, deleteButton);
+    taskList.appendChild(li);
+  });
 }
+
+taskForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  if (!currentUser) {
+    taskMessage.textContent = "Please login first 🌸";
+    return;
+  }
+
+  const title = taskInput.value.trim();
+  if (!title) return;
+
+  taskMessage.textContent = "Saving task...";
+
+  const { error } = await client.from("tasks").insert({
+    user_id: currentUser.id,
+    title: title,
+    is_completed: false
+  });
+
+  if (error) {
+    taskMessage.textContent = "Could not save task: " + error.message;
+  } else {
+    taskInput.value = "";
+    taskMessage.textContent = "Task saved successfully! 💗";
+    await loadTasks();
+  }
+});
+
+client.auth.onAuthStateChange((_event, session) => {
+  currentUser = session?.user ?? null;
+
+  userStatus.textContent = currentUser
+    ? "Logged in as: " + currentUser.email
+    : "Not logged in";
+
+  logoutButton.hidden = !currentUser;
+  document.getElementById("email").disabled = !!currentUser;
+  document.getElementById("password").disabled = !!currentUser;
+  document.getElementById("login-button").hidden = !!currentUser;
+  document.getElementById("signup-button").hidden = !!currentUser;
+
+  loadTasks();
+});
+
+const todayTasks = document.querySelectorAll(".task-check");
+
+function updateProgress() {
+  const done = [...todayTasks].filter(task => task.checked).length;
+  document.getElementById("progress-text").textContent =
+    `${done} of ${todayTasks.length} tasks complete`;
+  document.getElementById("progress-bar").style.width =
+    `${done / todayTasks.length * 100}%`;
+}
+
+todayTasks.forEach(task => task.addEventListener("change", updateProgress));
+updateProgress();
+</script>
+</body>
+</html>
